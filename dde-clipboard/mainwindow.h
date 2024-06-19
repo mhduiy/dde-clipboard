@@ -14,7 +14,11 @@
 #include "listview.h"
 #include "iconbutton.h"
 
+#ifdef DTKWIDGET_CLASS_DBlurEffectWithBorderWidget
+#include <DBlurEffectWithBorderWidget>
+#else
 #include <DBlurEffectWidget>
+#endif
 #include <DWindowManagerHelper>
 #include <DRegionMonitor>
 #include <DDBusInterface>
@@ -41,7 +45,11 @@ using DBusDaemonDock = org::deepin::dde::daemon::Dock1;
  * \~chinese \class MainWindow
  * \~chinese \brief 主窗口类
  */
+#ifdef DTKWIDGET_CLASS_DBlurEffectWithBorderWidget
+class MainWindow : public DBlurEffectWithBorderWidget
+#else
 class MainWindow : public DBlurEffectWidget
+#endif
 {
     Q_OBJECT
     Q_PROPERTY(int width READ getWidth WRITE setFixedWidth)

@@ -34,7 +34,11 @@ static QColor innerBorderColor = QColor(255, 255, 255, static_cast<int>(0.2 * 25
 #define ALPHA_OFFSET 10
 
 MainWindow::MainWindow(QWidget *parent)
+#ifdef DTKWIDGET_CLASS_DBlurEffectWithBorderWidget
+    : DBlurEffectWithBorderWidget(parent)
+#else
     : DBlurEffectWidget(parent)
+#endif
     , m_displayInter(new DBusDisplay("org.deepin.dde.Display1", "/org/deepin/dde/Display1", QDBusConnection::sessionBus(), this))
     , m_daemonDockInter(new DBusDaemonDock("org.deepin.dde.daemon.Dock1", "/org/deepin/dde/daemon/Dock1", QDBusConnection::sessionBus(), this))
     , m_dockInter(new DBusDockInterface)
